@@ -1,102 +1,99 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Medollars Cahier</title>
 <link rel="stylesheet" href="style.css">
 <script src='https://unpkg.com/tesseract.js@4.1.1/dist/tesseract.min.js'></script>
 <link rel="manifest" href="manifest.json">
+<link rel="icon" href="icône-192.png">
+<link rel="apple-touch-icon" href="icône-192.png">
 <meta name="theme-color" content="#ff6b00">
 </head>
 <body>
 <header>
-    <div class="logo">
-        <div class="logo-icon">MC</div>
-        <div class="logo-text">
-            <h1>Medollars Cahier</h1>
-            <p>Ton 2ème Cahier intelligent - 100% Hors Ligne</p>
-        </div>
+  <div class="logo">
+    <div class="logo-icon">MC</div>
+    <div class="logo-text">
+      <h1>Medollars Cahier</h1>
+      <p>Ton 2ème Cahier intelligent - 100% Hors Ligne</p>
     </div>
-    <button id="btnTheme">🌙</button>
+  </div>
+  <button id="btnTheme">🌙</button>
 </header>
 
 <main>
-    <!-- SECTION 1: SCANNER -->
-    <section class="container">
-        <h2>1. Scanner / Importer une page 📸</h2>
-        <div style="display:flex; gap:10px; margin-bottom:10px;">
-            <button id="btnPhoto">📸 Prendre Photo</button>
-            <button id="btnImport">📁 Importer Fichier</button>
-        </div>
-        <input type="file" id="inputImage" accept="image/*" capture="environment" style="display:none;">
-        <input type="file" id="inputFichier" accept="image/*" style="display:none;">
-        <p id="statutScan">Choisis une option ci-dessus</p>
-        <div id="texteScanne"></div>
-        <p style="font-size:12px; color:#888; margin-top:5px;">Astuce: Mets 1 ligne vide entre 2 cours pour le découpage auto</p>
-    </section>
+  <!-- SECTION 1: SCANNER -->
+  <section class="container">
+    <h2>1. Scanner / Importer une page 📸</h2>
+    <div style="display:flex; gap:10px; margin-bottom:10px;">
+      <button id="btnPhoto">📸 Prendre Photo</button>
+      <button id="btnImport">📁 Importer Fichier</button>
+    </div>
+    <input type="file" id="inputImage" accept="image/*" capture="environment" style="display:none;">
+    <input type="file" id="inputFichier" accept="image/*" style="display:none;">
+    <p id="statutScan">Choisis une option ci-dessus</p>
+    <div id="texteScanne"></div>
+    <p style="font-size:12px; color:#888; margin-top:5px;">Astuce: Mets 1 ligne vide entre 2 cours pour le découpage auto</p>
+  </section>
 
-    <!-- SECTION 2: SAISIE -->
-    <section class="container">
-        <h2>2. Coller / Corriger le texte ✍️</h2>
-        <textarea id="zoneSaisie" placeholder="Colle plusieurs cours ici. Exemple:
-3ème - Maths : Les Fractions
-1/2 + 1/4 = 3/4
+  <!-- SECTION 2: SAISIE -->
+  <section class="container">
+    <h2>2. Coller / Corriger le texte ✍️</h2>
+    <textarea id="zoneSaisie" placeholder="Colle plusieurs cours ici. Exemple: 3ème - Maths : Les Fractions 1/2 + 1/4 = 3/4 Tle - Philosophie : La Liberté La liberté est..."></textarea>
+    <button id="btnAnalyser">Analyser et Enregistrer</button>
+  </section>
 
-Tle - Philosophie : La Liberté
-La liberté est..."></textarea>
-        <button id="btnAnalyser">Analyser et Enregistrer</button>
-    </section>
+  <!-- SECTION 3: MES COURS -->
+  <section class="container">
+    <h2>3. Mes Cours 📚</h2>
+    <input type="text" id="barreRecherche" placeholder="🔍 Rechercher: Maths, 3ème, SVT...">
+    <button id="btnExporter">📄 Exporter tout en .TXT</button>
+    <div id="affichageCours"><p style="text-align:center; color:#888;">Aucun cours enregistré.</p></div>
+  </section>
 
-    <!-- SECTION 3: MES COURS -->
-    <section class="container">
-        <h2>3. Mes Cours 📚</h2>
-        <input type="text" id="barreRecherche" placeholder="🔍 Rechercher: Maths, 3ème, SVT...">
-        <button id="btnExporter">📄 Exporter tout en .TXT</button>
-        <div id="affichageCours"><p style="text-align:center; color:#888;">Aucun cours enregistré.</p></div>
-    </section>
-
-    <!-- SECTION 4: A PROPOS + NOTE -->
-    <section class="container">
-        <h2>4. À Propos & Noter l'app ⭐</h2>
-        <div style="text-align:center; margin-bottom:15px;">
-            <h3 style="color:var(--vert);">Medollars Cahier v2.0</h3>
-            <p>Ton 2ème Cahier intelligent. Classement Auto + 100% Hors ligne.</p>
-            <p style="font-size:12px; margin-top:5px;">Fait avec ❤️ au Togo par <b>MEDOLLARS Tech</b></p>
-        </div>
-        <div style="background:var(--fond); padding:15px; border-radius:10px; margin-bottom:15px;">
-            <h4>Nouveautés v2.0 🔥</h4>
-            <p style="font-size:13px; line-height: 1.8;">
-                ✅ Découpage auto de plusieurs cours<br>
-                ✅ Classement Primaire → Campus<br>
-                ✅ 30+ matières détectées<br>
-                ✅ Écoute, Recherche, Partage<br>
-                ✅ 100% Hors Ligne, 3Mo seulement
-            </p>
-        </div>
-        <h4 style="text-align:center; color:var(--vert); margin-bottom:10px;">Tu aimes l'app? Note-nous</h4>
-        <div id="etoiles" style="font-size: 30px; cursor: pointer; text-align: center;">
-            <span onclick="noterApp(1)">★</span>
-            <span onclick="noterApp(2)">★</span>
-            <span onclick="noterApp(3)">★</span>
-            <span onclick="noterApp(4)">★</span>
-            <span onclick="noterApp(5)">★</span>
-        </div>
-        <p id="msgNote" style="text-align:center; font-size:12px; margin-top:5px; color:var(--vert);"></p>
-        <button onclick="resetNote()" style="background:#f44336; color:white; width:100%; padding:8px; margin-top:10px; border-radius:8px; border:none; font-size:12px;">
-            🔄 Réinitialiser ma note
-        </button>
-        <button id="btnPartagerApp" style="margin-top:10px;">📲 Partager l'app à un ami</button>
-    </section>
+  <!-- SECTION 4: A PROPOS + NOTE -->
+  <section class="container">
+    <h2>4. À Propos & Noter l'app ⭐</h2>
+    <div style="text-align:center; margin-bottom:15px;">
+      <h3 style="color:var(--vert);">Medollars Cahier v2.0</h3>
+      <p>Ton 2ème Cahier intelligent. Classement Auto + 100% Hors ligne.</p>
+      <p style="font-size:12px; margin-top:5px;">Fait avec ❤️ au Togo par <b>MEDOLLARS Tech</b></p>
+    </div>
+    <div style="background:var(--fond); padding:15px; border-radius:10px; margin-bottom:15px;">
+      <h4>Nouveautés v2.0 🔥</h4>
+      <p style="font-size:13px; line-height: 1.8;">
+        ✅ Découpage auto de plusieurs cours<br>
+        ✅ Classement Primaire → Campus<br>
+        ✅ 30+ matières détectées<br>
+        ✅ Écoute, Recherche, Partage<br>
+        ✅ 100% Hors Ligne, 3Mo seulement
+      </p>
+    </div>
+    <h4 style="text-align:center; color:var(--vert); margin-bottom:10px;">Tu aimes l'app? Note-nous</h4>
+    <div id="etoiles" style="font-size: 30px; cursor: pointer; text-align: center;">
+      <span onclick="noterApp(1)">★</span>
+      <span onclick="noterApp(2)">★</span>
+      <span onclick="noterApp(3)">★</span>
+      <span onclick="noterApp(4)">★</span>
+      <span onclick="noterApp(5)">★</span>
+    </div>
+    <p id="msgNote" style="text-align:center; font-size:12px; margin-top:5px; color:var(--vert);"></p>
+    <button onclick="resetNote()" style="background:#f44336; color:white; width:100%; padding:8px; margin-top:10px; border-radius:8px; border:none; font-size:12px;">
+      🔄 Réinitialiser ma note
+    </button>
+    <button id="btnPartagerApp" style="margin-top:10px;">📲 Partager l'app à un ami</button>
+  </section>
 </main>
 
 <footer>
-    <p class="proverbe">💡 "Ce que tu apprends aujourd'hui construit qui tu seras demain."</p>
-    <p class="signature">Développé par <b>MEDOLLARS Tech</b> | <a href="tel:+22870178818" class="numero-tel">+228 70 17 88 18</a></p>
-    <p>Les formulaires scientifiques sont disponibles</p>
-    <p>Contactez-nous pour plus d'informations</p>
+  <p class="proverbe">💡 "Ce que tu apprends aujourd'hui construit qui tu seras demain."</p>
+  <p class="signature">Développé par <b>MEDOLLARS Tech</b> | <a href="tel:+22870178818" class="numero-tel">+228 70 17 88 18</a></p>
+  <p>Les formulaires scientifiques sont disponibles</p>
+  <p>Contactez-nous pour plus d'informations</p>
 </footer>
 
 <script src="script.js"></script>
 </body>
-</html>
+  </html>
